@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "900711587622",
+    "project_id": "brewcoffee-a3cf2",
+    "storage_bucket": "brewcoffee-a3cf2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900711587622:android:a7291cdf61f8863d286be7",
+        "android_client_info": {
+          "package_name": "com.example.brewcoffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900711587622-nbueh6jdoeehvd1k7p6178utk12uiipr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.brewcoffee",
+            "certificate_hash": "6cbfa92e418a0d79e6c6103521fc8074bb6c92d3"
+          }
+        },
+        {
+          "client_id": "900711587622-pp3ogqbjuuv2nnktr4gkg1vq29jhjv94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7v7CIVU_hmhZBZPNp9ltfyfqz2jBfZQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900711587622-pp3ogqbjuuv2nnktr4gkg1vq29jhjv94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
