@@ -16,9 +16,12 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  String username;
+  String username,needed;
+  int sugarstrength;
+  String _chosenValue;
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   bool _isLoggedIn = true;
+  final CollectionReference brewcollection1 = FirebaseFirestore.instance.collection("brews");
 
   _homepageState({this.username});
 
@@ -68,21 +71,67 @@ class _homepageState extends State<homepage> {
   }
 
   Widget bottompart() {
-    return Container(
-      height: 250,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return SingleChildScrollView(
+      child: Container(
+        height: 350,
+        child: Column(
+          children: [
+            Column(
               children: [
-                
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(60,100,60,0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Do You Need Sugar ??',
+                      labelStyle: TextStyle(
+                          fontSize:19,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),),
+                    style: TextStyle(fontSize: 19),
+                    onChanged: (text){
+                      needed=text;
+                    },
+                  ),
+                ),
+                DropdownButton<String>(
+                  focusColor:Colors.white,
+                  value: _chosenValue,
+                  //elevation: 5,
+                  style: TextStyle(color: Colors.white),
+                  iconEnabledColor:Colors.black,
+                  items: <String>[
+                    '1', '2', '3', '4', '5', '6', '7', '8', '9','10'
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value,style:TextStyle(color:Colors.black),),
+                    );
+                  }).toList(),
+                  hint:Text(
+                    "Choose the strength of Sugar",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onChanged: (String value) {
+                    setState(() {
+                      _chosenValue = value;
+                      sugarstrength = int.parse(value);
+                    });
+                  },
+                ),
+                RaisedButton(onPressed: (){
+                  brewcollection1.doc(username).set({
+                    "sugar":"chinhi",
+                    "name":username,
+                    "strength":sugarstrength
+                  });
+                })
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
