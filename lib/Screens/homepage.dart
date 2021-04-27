@@ -21,6 +21,7 @@ class _homepageState extends State<homepage> {
   bool _isLoggedIn = true;
 
   _homepageState({this.username});
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<brewmodel>>.value(
@@ -35,26 +36,53 @@ class _homepageState extends State<homepage> {
               )),
           title: Text("Welcome To Brew Coffee"),
           actions: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-              child: IconButton(
-                  onPressed: () {
-                    _googleSignIn.signOut();
-                    setState(() {
-                      _isLoggedIn = false;
-                    });
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignIn()));
-                  },
-                  icon: Icon(
-                    Icons.logout,
-                    size: 30,
-                  )),
-            )
+            IconButton(
+                onPressed: () {
+                  _googleSignIn.signOut();
+                  setState(() {
+                    _isLoggedIn = false;
+                  });
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignIn()));
+                },
+                icon: Icon(
+                  Icons.logout,
+                  size: 30,
+                )),
+            IconButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context, builder: (builder) => bottompart());
+                },
+                icon: Icon(
+                  Icons.settings,
+                  size: 30,
+                )),
+            SizedBox(width: 10,)
           ],
         ),
         body: BrewList(),
+      ),
+    );
+  }
+
+  Widget bottompart() {
+    return Container(
+      height: 250,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

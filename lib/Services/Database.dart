@@ -20,7 +20,8 @@ class Database{
   }
 
   List<brewmodel> listfromsnapshot(QuerySnapshot snapshot){
-    return snapshot.docs.map((doc){
+    return snapshot.docs.map((doc)
+    {
       return brewmodel(
         name: doc.data()["name"],
         strength: doc.data()["strength"],
